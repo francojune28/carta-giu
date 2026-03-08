@@ -148,6 +148,25 @@ color:white;
 cursor:pointer;
 }
 
+/* BRILLOS */
+
+.sparkle{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+animation:sparkle 2s infinite;
+}
+
+@keyframes sparkle{
+
+0%{opacity:0;transform:scale(0)}
+50%{opacity:1;transform:scale(1.2)}
+100%{opacity:0;transform:scale(0)}
+
+}
+
 </style>
 </head>
 
@@ -167,7 +186,7 @@ cursor:pointer;
 
 <div id="backCover">Portada</div>
 
-<!-- PAGINAS -->
+<!-- PAGINA 1 -->
 
 <div class="page active">
 <div class="content">
@@ -176,12 +195,16 @@ cursor:pointer;
 </div>
 </div>
 
+<!-- PAGINA 2 -->
+
 <div class="page">
 <div class="content">
 <h2>Tu sonrisa</h2>
 <p>Tu sonrisa ilumina cada momento.</p>
 </div>
 </div>
+
+<!-- PAGINA 3 -->
 
 <div class="page">
 <div class="content">
@@ -190,6 +213,8 @@ cursor:pointer;
 </div>
 </div>
 
+<!-- PAGINA 4 -->
+
 <div class="page">
 <div class="content">
 <h2>Admiración</h2>
@@ -197,11 +222,32 @@ cursor:pointer;
 </div>
 </div>
 
+<!-- PAGINA 5 -->
+
 <div class="page">
 <div class="content">
 <h2>Feliz día</h2>
 <p>Feliz día de la mujer mi Giu 💛</p>
 </div>
+</div>
+
+<!-- PAGINA FINAL -->
+
+<div class="page">
+
+<div class="content">
+
+<h2>Fin</h2>
+<p>Gracias por existir ✨</p>
+
+<div class="sparkle" style="top:30%;left:40%"></div>
+<div class="sparkle" style="top:50%;left:60%"></div>
+<div class="sparkle" style="top:70%;left:45%"></div>
+<div class="sparkle" style="top:40%;left:70%"></div>
+<div class="sparkle" style="top:60%;left:30%"></div>
+
+</div>
+
 </div>
 
 <div class="controls">
@@ -255,6 +301,9 @@ openBtn.addEventListener("click",()=>{
 intro.style.display="none"
 book.style.display="flex"
 
+current=0
+updatePages()
+
 })
 
 /* VOLVER PORTADA */
@@ -263,8 +312,14 @@ backCover.addEventListener("click",()=>{
 
 book.style.display="none"
 intro.style.display="flex"
+
 current=0
-updatePages()
+
+pages.forEach(p=>{
+p.classList.remove("active","prev")
+})
+
+pages[0].classList.add("active")
 
 })
 
@@ -290,7 +345,7 @@ updatePages()
 
 })
 
-/* SWIPE MOVIL */
+/* SWIPE */
 
 let startX=0
 
