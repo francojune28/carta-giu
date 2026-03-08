@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
@@ -18,6 +17,7 @@ font-family:Poppins;
 background:black;
 overflow:hidden;
 height:100vh;
+perspective:2000px;
 }
 
 /* BOTON MUSICA */
@@ -29,44 +29,40 @@ right:20px;
 width:50px;
 height:50px;
 border-radius:50%;
-background:rgba(255,255,255,0.15);
-border:1px solid rgba(255,255,255,0.3);
+background:rgba(255,255,255,0.2);
 backdrop-filter:blur(10px);
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:20px;
 color:white;
 cursor:pointer;
-z-index:100;
+z-index:20;
 }
 
-/* INTRO */
+/* PORTADA */
 
 #intro{
-position:fixed;
+position:absolute;
 inset:0;
 display:flex;
 flex-direction:column;
-justify-content:center;
 align-items:center;
+justify-content:center;
 background:black;
 }
 
 #cover{
-max-width:95vw;
-max-height:85vh;
+max-width:90vw;
+max-height:80vh;
 object-fit:contain;
-border-radius:10px;
 }
 
 #openBtn{
-margin-top:25px;
-padding:14px 32px;
-border-radius:40px;
-background:rgba(255,255,255,0.15);
-border:1px solid rgba(255,255,255,0.3);
-backdrop-filter:blur(10px);
+margin-top:20px;
+padding:14px 30px;
+border-radius:30px;
+border:none;
+background:rgba(255,255,255,0.2);
 color:white;
 font-size:18px;
 cursor:pointer;
@@ -75,7 +71,7 @@ cursor:pointer;
 /* LIBRO */
 
 #book{
-position:fixed;
+position:absolute;
 inset:0;
 display:none;
 align-items:center;
@@ -86,21 +82,27 @@ justify-content:center;
 
 .page{
 position:absolute;
-inset:0;
+width:100%;
+height:100%;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 background:url("fondo.jpg") center/cover no-repeat;
-opacity:0;
-transition:opacity .5s;
+transform-origin:left;
+transform:rotateY(90deg);
+transition:transform .7s ease;
 }
 
 .page.active{
-opacity:1;
+transform:rotateY(0deg);
+}
+
+.page.prev{
+transform:rotateY(-90deg);
 }
 
 .content{
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.45);
 padding:30px;
 border-radius:12px;
 color:white;
@@ -112,11 +114,11 @@ max-width:80%;
 
 .controls{
 position:absolute;
-bottom:25px;
+bottom:30px;
 width:100%;
 display:flex;
 justify-content:space-between;
-padding:0 25px;
+padding:0 30px;
 box-sizing:border-box;
 }
 
@@ -124,31 +126,29 @@ box-sizing:border-box;
 width:50px;
 height:50px;
 border-radius:50%;
-background:rgba(255,255,255,0.15);
-border:1px solid rgba(255,255,255,0.3);
-backdrop-filter:blur(10px);
-color:white;
-font-size:24px;
+background:rgba(255,255,255,0.2);
 display:flex;
 align-items:center;
 justify-content:center;
+font-size:22px;
+color:white;
 cursor:pointer;
 }
+
+/* BOTON PORTADA */
 
 #backCover{
 position:absolute;
 top:20px;
 left:20px;
-padding:10px 18px;
+padding:10px 20px;
 border-radius:25px;
-background:rgba(255,255,255,0.15);
-border:1px solid rgba(255,255,255,0.3);
+background:rgba(255,255,255,0.2);
 color:white;
 cursor:pointer;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -165,39 +165,43 @@ cursor:pointer;
 
 <div id="book">
 
-<button id="backCover">Portada</button>
+<div id="backCover">Portada</div>
+
+<!-- PAGINAS -->
 
 <div class="page active">
-
 <div class="content">
-
 <h2>Para ti</h2>
 <p>Hoy quiero recordarte lo especial que eres.</p>
-
 </div>
-
 </div>
 
 <div class="page">
-
 <div class="content">
-
 <h2>Tu sonrisa</h2>
 <p>Tu sonrisa ilumina cada momento.</p>
-
 </div>
-
 </div>
 
 <div class="page">
-
 <div class="content">
-
-<h2>Feliz día</h2>
-<p>Feliz día de la mujer mi Giu 💛</p>
-
+<h2>Tu esencia</h2>
+<p>Tienes una forma única de hacer que todo sea mejor.</p>
+</div>
 </div>
 
+<div class="page">
+<div class="content">
+<h2>Admiración</h2>
+<p>Admiro tu fuerza, tu inteligencia y tu corazón.</p>
+</div>
+</div>
+
+<div class="page">
+<div class="content">
+<h2>Feliz día</h2>
+<p>Feliz día de la mujer mi Giu 💛</p>
+</div>
 </div>
 
 <div class="controls">
@@ -209,41 +213,42 @@ cursor:pointer;
 
 </div>
 
-<audio id="music" preload="auto" loop playsinline webkit-playsinline>
+<audio id="music" loop playsinline webkit-playsinline>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* ELEMENTOS */
+const intro=document.getElementById("intro")
+const book=document.getElementById("book")
+const pages=document.querySelectorAll(".page")
 
-const intro = document.getElementById("intro")
-const book = document.getElementById("book")
-const pages = document.querySelectorAll(".page")
+const nextBtn=document.getElementById("nextBtn")
+const prevBtn=document.getElementById("prevBtn")
+const backCover=document.getElementById("backCover")
+const openBtn=document.getElementById("openBtn")
 
-const nextBtn = document.getElementById("nextBtn")
-const prevBtn = document.getElementById("prevBtn")
-const backCover = document.getElementById("backCover")
-const openBtn = document.getElementById("openBtn")
+let current=0
 
-const music = document.getElementById("music")
-const musicBtn = document.getElementById("musicBtn")
+function updatePages(){
 
-let page = 0
-let playing = false
+pages.forEach((p,i)=>{
 
-music.load()
+p.classList.remove("active","prev")
 
-/* PAGINAS */
+if(i===current){
+p.classList.add("active")
+}
 
-function showPage(){
+if(i<current){
+p.classList.add("prev")
+}
 
-pages.forEach(p=>p.classList.remove("active"))
-pages[page].classList.add("active")
+})
 
 }
 
-/* ABRIR CARTA */
+/* ABRIR LIBRO */
 
 openBtn.addEventListener("click",()=>{
 
@@ -258,63 +263,70 @@ backCover.addEventListener("click",()=>{
 
 book.style.display="none"
 intro.style.display="flex"
+current=0
+updatePages()
 
 })
 
-/* PAGINA SIGUIENTE */
+/* SIGUIENTE */
 
 nextBtn.addEventListener("click",()=>{
 
-if(page < pages.length-1){
-page++
-showPage()
+if(current < pages.length-1){
+current++
+updatePages()
 }
 
 })
 
-/* PAGINA ANTERIOR */
+/* ANTERIOR */
 
 prevBtn.addEventListener("click",()=>{
 
-if(page > 0){
-page--
-showPage()
+if(current > 0){
+current--
+updatePages()
 }
 
 })
 
 /* SWIPE MOVIL */
 
-let startX = 0
+let startX=0
 
-document.addEventListener("touchstart", e=>{
-startX = e.touches[0].clientX
+document.addEventListener("touchstart",e=>{
+startX=e.touches[0].clientX
 })
 
-document.addEventListener("touchend", e=>{
+document.addEventListener("touchend",e=>{
 
-let endX = e.changedTouches[0].clientX
+let endX=e.changedTouches[0].clientX
 
-if(startX - endX > 50) nextBtn.click()
-if(endX - startX > 50) prevBtn.click()
+if(startX-endX>50) nextBtn.click()
+if(endX-startX>50) prevBtn.click()
 
 })
 
-/* MUSICA COMPATIBLE SAFARI */
+/* MUSICA */
+
+const music=document.getElementById("music")
+const musicBtn=document.getElementById("musicBtn")
+
+let playing=false
 
 musicBtn.addEventListener("click",()=>{
 
 if(!playing){
 
 music.play().then(()=>{
-playing = true
+playing=true
 musicBtn.innerHTML="🔊"
-}).catch(()=>{})
+})
 
 }else{
 
 music.pause()
-playing = false
+playing=false
 musicBtn.innerHTML="🔇"
 
 }
