@@ -38,7 +38,7 @@ justify-content:center;
 font-size:20px;
 color:white;
 cursor:pointer;
-z-index:10;
+z-index:100;
 }
 
 /* INTRO */
@@ -59,8 +59,6 @@ max-height:85vh;
 object-fit:contain;
 border-radius:10px;
 }
-
-/* BOTON ABRIR */
 
 #openBtn{
 margin-top:25px;
@@ -100,8 +98,6 @@ transition:opacity .5s;
 .page.active{
 opacity:1;
 }
-
-/* CONTENIDO */
 
 .content{
 background:rgba(0,0,0,0.5);
@@ -176,7 +172,6 @@ cursor:pointer;
 <div class="content">
 
 <h2>Para ti</h2>
-
 <p>Hoy quiero recordarte lo especial que eres.</p>
 
 </div>
@@ -188,7 +183,6 @@ cursor:pointer;
 <div class="content">
 
 <h2>Tu sonrisa</h2>
-
 <p>Tu sonrisa ilumina cada momento.</p>
 
 </div>
@@ -200,7 +194,6 @@ cursor:pointer;
 <div class="content">
 
 <h2>Feliz día</h2>
-
 <p>Feliz día de la mujer mi Giu 💛</p>
 
 </div>
@@ -216,17 +209,32 @@ cursor:pointer;
 
 </div>
 
-<audio id="music" loop>
+<audio id="music" preload="auto" loop playsinline webkit-playsinline>
 <source src="musica.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 
+/* ELEMENTOS */
+
 const intro = document.getElementById("intro")
 const book = document.getElementById("book")
 const pages = document.querySelectorAll(".page")
 
+const nextBtn = document.getElementById("nextBtn")
+const prevBtn = document.getElementById("prevBtn")
+const backCover = document.getElementById("backCover")
+const openBtn = document.getElementById("openBtn")
+
+const music = document.getElementById("music")
+const musicBtn = document.getElementById("musicBtn")
+
 let page = 0
+let playing = false
+
+music.load()
+
+/* PAGINAS */
 
 function showPage(){
 
@@ -235,39 +243,45 @@ pages[page].classList.add("active")
 
 }
 
-document.getElementById("openBtn").onclick = () => {
+/* ABRIR CARTA */
+
+openBtn.addEventListener("click",()=>{
 
 intro.style.display="none"
 book.style.display="flex"
 
-}
+})
 
-document.getElementById("backCover").onclick = () => {
+/* VOLVER PORTADA */
+
+backCover.addEventListener("click",()=>{
 
 book.style.display="none"
 intro.style.display="flex"
 
-}
+})
 
-/* BOTONES PAGINA */
+/* PAGINA SIGUIENTE */
 
-document.getElementById("nextBtn").onclick = () => {
+nextBtn.addEventListener("click",()=>{
 
 if(page < pages.length-1){
 page++
 showPage()
 }
 
-}
+})
 
-document.getElementById("prevBtn").onclick = () => {
+/* PAGINA ANTERIOR */
 
-if(page>0){
+prevBtn.addEventListener("click",()=>{
+
+if(page > 0){
 page--
 showPage()
 }
 
-}
+})
 
 /* SWIPE MOVIL */
 
@@ -281,38 +295,31 @@ document.addEventListener("touchend", e=>{
 
 let endX = e.changedTouches[0].clientX
 
-if(startX-endX>50) document.getElementById("nextBtn").click()
-if(endX-startX>50) document.getElementById("prevBtn").click()
+if(startX - endX > 50) nextBtn.click()
+if(endX - startX > 50) prevBtn.click()
 
 })
 
-/* MUSICA */
+/* MUSICA COMPATIBLE SAFARI */
 
-const music = document.getElementById("music")
-const musicBtn = document.getElementById("musicBtn")
-
-let playing = false
-
-musicBtn.onclick = () => {
+musicBtn.addEventListener("click",()=>{
 
 if(!playing){
 
 music.play().then(()=>{
-
 playing = true
-musicBtn.innerHTML = "🔊"
-
-})
+musicBtn.innerHTML="🔊"
+}).catch(()=>{})
 
 }else{
 
 music.pause()
 playing = false
-musicBtn.innerHTML = "🔇"
+musicBtn.innerHTML="🔇"
 
 }
 
-}
+})
 
 </script>
 
