@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -110,19 +111,24 @@ text-align:center;
 max-width:80%;
 }
 
-/* CONTROLES */
+/* BOTONES LATERALES */
 
 .controls{
+
 position:absolute;
-bottom:30px;
+top:50%;
+left:0;
 width:100%;
+transform:translateY(-50%);
 display:flex;
 justify-content:space-between;
-padding:0 30px;
+padding:0 25px;
 box-sizing:border-box;
+
 }
 
 .btn{
+
 width:50px;
 height:50px;
 border-radius:50%;
@@ -133,11 +139,13 @@ justify-content:center;
 font-size:22px;
 color:white;
 cursor:pointer;
+
 }
 
 /* BOTON PORTADA */
 
 #backCover{
+
 position:absolute;
 top:20px;
 left:20px;
@@ -146,23 +154,26 @@ border-radius:25px;
 background:rgba(255,255,255,0.2);
 color:white;
 cursor:pointer;
+
 }
 
 /* BRILLOS */
 
 .sparkle{
+
 position:absolute;
 width:6px;
 height:6px;
 background:white;
 border-radius:50%;
 animation:sparkle 2s infinite;
+
 }
 
 @keyframes sparkle{
 
 0%{opacity:0;transform:scale(0)}
-50%{opacity:1;transform:scale(1.2)}
+50%{opacity:1;transform:scale(1.3)}
 100%{opacity:0;transform:scale(0)}
 
 }
@@ -186,7 +197,7 @@ animation:sparkle 2s infinite;
 
 <div id="backCover">Portada</div>
 
-<!-- PAGINA 1 -->
+<!-- PAGINAS -->
 
 <div class="page active">
 <div class="content">
@@ -195,16 +206,12 @@ animation:sparkle 2s infinite;
 </div>
 </div>
 
-<!-- PAGINA 2 -->
-
 <div class="page">
 <div class="content">
 <h2>Tu sonrisa</h2>
 <p>Tu sonrisa ilumina cada momento.</p>
 </div>
 </div>
-
-<!-- PAGINA 3 -->
 
 <div class="page">
 <div class="content">
@@ -213,16 +220,12 @@ animation:sparkle 2s infinite;
 </div>
 </div>
 
-<!-- PAGINA 4 -->
-
 <div class="page">
 <div class="content">
 <h2>Admiración</h2>
-<p>Admiro tu fuerza, tu inteligencia y tu corazón.</p>
+<p>Admiro tu fuerza y tu corazón.</p>
 </div>
 </div>
-
-<!-- PAGINA 5 -->
 
 <div class="page">
 <div class="content">
@@ -230,8 +233,6 @@ animation:sparkle 2s infinite;
 <p>Feliz día de la mujer mi Giu 💛</p>
 </div>
 </div>
-
-<!-- PAGINA FINAL -->
 
 <div class="page">
 
@@ -306,7 +307,7 @@ updatePages()
 
 })
 
-/* VOLVER PORTADA */
+/* VOLVER PORTADA (CORREGIDO DEFINITIVO) */
 
 backCover.addEventListener("click",()=>{
 
@@ -315,11 +316,15 @@ intro.style.display="flex"
 
 current=0
 
-pages.forEach(p=>{
-p.classList.remove("active","prev")
-})
+pages.forEach((p,i)=>{
 
-pages[0].classList.add("active")
+p.classList.remove("active","prev")
+
+if(i===0){
+p.classList.add("active")
+}
+
+})
 
 })
 
@@ -328,8 +333,10 @@ pages[0].classList.add("active")
 nextBtn.addEventListener("click",()=>{
 
 if(current < pages.length-1){
+
 current++
 updatePages()
+
 }
 
 })
@@ -338,14 +345,16 @@ updatePages()
 
 prevBtn.addEventListener("click",()=>{
 
-if(current > 0){
+if(current>0){
+
 current--
 updatePages()
+
 }
 
 })
 
-/* SWIPE */
+/* SWIPE MOVIL */
 
 let startX=0
 
@@ -374,8 +383,10 @@ musicBtn.addEventListener("click",()=>{
 if(!playing){
 
 music.play().then(()=>{
+
 playing=true
 musicBtn.innerHTML="🔊"
+
 })
 
 }else{
