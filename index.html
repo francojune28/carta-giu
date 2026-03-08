@@ -52,9 +52,10 @@ background:black;
 }
 
 #cover{
-max-width:90vw;
-max-height:80vh;
+max-width:95vw;     /* más amplia */
+max-height:85vh;    /* muestra más imagen */
 object-fit:contain;
+transform:translateY(-20px); /* un poco más arriba */
 }
 
 #openBtn{
@@ -86,13 +87,13 @@ position:absolute;
 width:100%;
 height:100%;
 display:flex;
-align-items:flex-start; /* TEXTO MÁS ARRIBA */
+align-items:flex-start;
 justify-content:center;
 background:url("fondo.jpg") center/cover no-repeat;
 transform-origin:left;
 transform:rotateY(90deg);
 transition:transform .7s ease;
-padding:90px 20px 20px 20px; /* sube contenido */
+padding:90px 20px 20px 20px;
 box-sizing:border-box;
 }
 
@@ -115,10 +116,10 @@ max-height:70vh;
 overflow-y:auto;
 }
 
-/* BOTONES DE PAGINA */
+/* BOTONES */
 
 .controls{
-margin-top:20px; /* justo debajo del texto */
+margin-top:20px;
 display:flex;
 justify-content:center;
 gap:30px;
@@ -204,7 +205,7 @@ animation:sparkle 2s infinite;
 
 <div class="page">
 <div class="content">
-<p>Desde el primer día que te vi pensé que eras diferente. Había algo en ti que llamó mi atención de una manera especial. Pero con el tiempo no solo lo pensé, lo confirmé...</p>
+<p>Desde el primer día que te vi pensé que eras diferente...</p>
 </div>
 </div>
 
@@ -216,7 +217,7 @@ animation:sparkle 2s infinite;
 
 <div class="page">
 <div class="content">
-<p>También admiro profundamente tu fortaleza. Desde niña has atravesado muchas situaciones...</p>
+<p>También admiro profundamente tu fortaleza...</p>
 </div>
 </div>
 
@@ -228,19 +229,19 @@ animation:sparkle 2s infinite;
 
 <div class="page">
 <div class="content">
-<p>Cuando pienso en el futuro, me imagino muchas cosas a tu lado...</p>
+<p>Cuando pienso en el futuro, me imagino muchas cosas a tu lado.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>Pero más allá de los grandes momentos, lo que más disfruto son las cosas simples que vivimos juntos...</p>
+<p>Pero más allá de los grandes momentos, lo que más disfruto son las cosas simples que vivimos juntos.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>Cada vez que te veo después de un tiempo sin verte, vuelvo a sentir esos nervios...</p>
+<p>Cada vez que te veo después de un tiempo sin verte, vuelvo a sentir esos nervios.</p>
 </div>
 </div>
 
@@ -258,7 +259,7 @@ animation:sparkle 2s infinite;
 
 <div class="page">
 <div class="content">
-<p>Te amo con todo mi corazón.<br><br>Hoy quiero desearte un feliz Día de la Mujer. 💛</p>
+<p>Te amo con todo mi corazón.<br><br>Hoy quiero desearte un feliz Día de la Mujer. ❤️</p>
 </div>
 </div>
 
@@ -394,10 +395,8 @@ musicBtn.addEventListener("click",()=>{
 if(!playing){
 
 music.play().then(()=>{
-
 playing=true
 musicBtn.innerHTML="🔊"
-
 })
 
 }else{
