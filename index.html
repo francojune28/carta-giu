@@ -1,103 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:black;
+overflow:hidden;
+height:100vh;
+perspective:2000px;
+}
+
+/* BOTON MUSICA */
+
+#musicBtn{
+position:fixed;
+top:20px;
+right:20px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+cursor:pointer;
+z-index:20;
+}
+
+/* PORTADA */
+
+#intro{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+background:black;
+}
+
+#cover{
+max-width:90vw;
+max-height:80vh;
+object-fit:contain;
+}
+
+#openBtn{
+margin-top:20px;
+padding:14px 30px;
+border-radius:30px;
+border:none;
+background:rgba(255,255,255,0.2);
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+/* LIBRO */
+
+#book{
+position:absolute;
+inset:0;
+display:none;
+align-items:center;
+justify-content:center;
+}
+
+/* PAGINAS */
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:url("fondo.jpg") center/cover no-repeat;
+transform-origin:left;
+transform:rotateY(90deg);
+transition:transform .7s ease;
+padding:20px;
+box-sizing:border-box;
+}
+
+.page.active{
+transform:rotateY(0deg);
+}
+
+.page.prev{
+transform:rotateY(-90deg);
+}
+
+.content{
+background:rgba(0,0,0,0.45);
+padding:30px;
+border-radius:12px;
+color:white;
+text-align:center;
+max-width:700px;
+max-height:80vh;
+overflow-y:auto;
+}
+
+/* BOTONES LATERALES */
+
+.controls{
+position:absolute;
+top:50%;
+left:0;
+width:100%;
+transform:translateY(-50%);
+display:flex;
+justify-content:space-between;
+padding:0 25px;
+box-sizing:border-box;
+}
+
+.btn{
+width:50px;
+height:50px;
+border-radius:50%;
+background:rgba(255,255,255,0.2);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+color:white;
+cursor:pointer;
+}
+
+/* BOTON PORTADA */
+
+#backCover{
+position:absolute;
+top:20px;
+left:20px;
+padding:10px 20px;
+border-radius:25px;
+background:rgba(255,255,255,0.2);
+color:white;
+cursor:pointer;
+}
+
+/* BRILLOS */
+
+.sparkle{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+animation:sparkle 2s infinite;
+}
+
+@keyframes sparkle{
+
+0%{opacity:0;transform:scale(0)}
+50%{opacity:1;transform:scale(1.3)}
+100%{opacity:0;transform:scale(0)}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="musicBtn">🔇</div>
+
+<div id="intro">
+
+<img id="cover" src="carta.jpg">
+
+<button id="openBtn">Abrir carta</button>
+
+</div>
+
+<div id="book">
+
+<div id="backCover">Portada</div>
+
 <!-- PAGINAS -->
 
 <div class="page active">
 <div class="content">
-<p>
-Hoy quiero reconocer a la mujer más tierna y cariñosa que he conocido: tú. Aquella a quien siempre he admirado por tu fortaleza, valentía y resiliencia. Eres, sin duda, una mujer digna de toda mi admiración y respeto.
-</p>
+<p>Hoy quiero reconocer a la mujer más tierna y cariñosa que he conocido: tú. Aquella a quien siempre he admirado por tu fortaleza, valentía y resiliencia. Eres, sin duda, una mujer digna de toda mi admiración y respeto.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Tu ternura está en los pequeños detalles, en esas cosas simples que solo tú sabes hacer. Cuando me acaricias para dormir, cuando me rascas la cabecita, cuando me das besitos, cuando te pegas a mí o te echas sobre mí, aunque a veces pienses que no me gusta. La verdad es que todo eso me llena de cariño y tranquilidad. Son muchos los momentos en los que eres así, especialmente cuando estamos solos.
-</p>
+<p>Tu ternura está en los pequeños detalles, en esas cosas simples que solo tú sabes hacer. Cuando me acaricias para dormir, cuando me rascas la cabecita, cuando me das besitos, cuando te pegas a mí o te echas sobre mí, aunque a veces pienses que no me gusta. La verdad es que todo eso me llena de cariño y tranquilidad. Son muchos los momentos en los que eres así, especialmente cuando estamos solos.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Desde el primer día que te vi pensé que eras diferente. Había algo en ti que llamó mi atención de una manera especial. Pero con el tiempo no solo lo pensé, lo confirmé. Hubo un momento en el que atravesaba una situación difícil, llena de estrés e inseguridad, en la que incluso llegué a dudar de mí mismo y de mis capacidades. Fue en ese momento cuando estuviste ahí para mí. Me soportaste, me ayudaste, me aconsejaste y supiste ser ese apoyo que tanto necesitaba. En realidad, cada vez que he dudado de mí mismo, tú has sabido estar ahí para recordarme que puedo seguir adelante.
-</p>
+<p>Desde el primer día que te vi pensé que eras diferente. Había algo en ti que llamó mi atención de una manera especial. Pero con el tiempo no solo lo pensé, lo confirmé. Hubo un momento en el que atravesaba una situación difícil, llena de estrés e inseguridad, en la que incluso llegué a dudar de mí mismo y de mis capacidades. Fue en ese momento cuando estuviste ahí para mí. Me soportaste, me ayudaste, me aconsejaste y supiste ser ese apoyo que tanto necesitaba. En realidad, cada vez que he dudado de mí mismo, tú has sabido estar ahí para recordarme que puedo seguir adelante.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Hay algo de ti que siempre logra derretirme: cuando me hablas con tu voz tierna de bebé. Puede parecer algo pequeño, pero en esos momentos siento todo tu cariño y tu dulzura.
-</p>
+<p>Hay algo de ti que siempre logra derretirme: cuando me hablas con tu voz tierna de bebé. Puede parecer algo pequeño, pero en esos momentos siento todo tu cariño y tu dulzura.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-También admiro profundamente tu fortaleza. Desde niña has atravesado muchas situaciones, pero siempre has sabido sobreponerte. Incluso en los momentos difíciles, logras ser más positiva que yo, y eso me inspira mucho. Me llena de orgullo ver que, a tu edad, ya estés trabajando y esforzándote por salir adelante.
-</p>
+<p>También admiro profundamente tu fortaleza. Desde niña has atravesado muchas situaciones, pero siempre has sabido sobreponerte. Incluso en los momentos difíciles, logras ser más positiva que yo, y eso me inspira mucho. Me llena de orgullo ver que, a tu edad, ya estés trabajando y esforzándote por salir adelante.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Otra cosa que admiro de tu carácter es que no eres una mujer que se deje llevar fácilmente por los demás. Defiendes tus ideas, tienes tu propia forma de pensar y no tienes miedo de expresarlo. Esa valentía es parte de lo que te hace tan especial para mí.
-</p>
+<p>Otra cosa que admiro de tu carácter es que no eres una mujer que se deje llevar fácilmente por los demás. Defiendes tus ideas, tienes tu propia forma de pensar y no tienes miedo de expresarlo. Esa valentía es parte de lo que te hace tan especial para mí.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Cuando pienso en el futuro, me imagino muchas cosas a tu lado. Me imagino pidiendo tu mano a tu familia, casándome contigo y construyendo una vida juntos. Incluso me imagino bailando contigo canciones que son especiales para nosotros, como “Idilio”, aunque sería la primera vez que intente bailar salsa en serio. También me imagino bailando “Lifetime” y “Ella es mi fiesta”, disfrutando cada momento a tu lado.
-</p>
+<p>Cuando pienso en el futuro, me imagino muchas cosas a tu lado. Me imagino pidiendo tu mano a tu familia, casándome contigo y construyendo una vida juntos. Incluso me imagino bailando contigo canciones que son especiales para nosotros, como “Idilio”, aunque sería la primera vez que intente bailar salsa en serio. También me imagino bailando “Lifetime” y “Ella es mi fiesta”, disfrutando cada momento a tu lado.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Pero más allá de los grandes momentos, lo que más disfruto son las cosas simples que vivimos juntos: esas largas conversaciones como la que tuvimos afuera de tu casa, caminar de la mano, reírnos y molestarnos como si fuéramos niños. Son momentos sencillos, pero para mí tienen un valor enorme.
-</p>
+<p>Pero más allá de los grandes momentos, lo que más disfruto son las cosas simples que vivimos juntos: esas largas conversaciones como la que tuvimos afuera de tu casa, caminar de la mano, reírnos y molestarnos como si fuéramos niños. Son momentos sencillos, pero para mí tienen un valor enorme.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Cada vez que te veo después de un tiempo sin verte, vuelvo a sentir esos nervios, como si fuera la primera vez. Es una sensación difícil de explicar, pero es como volver a enamorarme de ti otra vez. Cuando estamos juntos, los días pasan volando, y siempre llega ese momento difícil cuando tienes que irte.
-</p>
+<p>Cada vez que te veo después de un tiempo sin verte, vuelvo a sentir esos nervios, como si fuera la primera vez. Es una sensación difícil de explicar, pero es como volver a enamorarme de ti otra vez. Cuando estamos juntos, los días pasan volando, y siempre llega ese momento difícil cuando tienes que irte.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Por todo eso y por muchas cosas más que quizás ni siquiera sé explicar con palabras, quiero que sepas lo importante que eres para mí. Siempre ha bastado con que seas tú para enamorarme una y otra vez.
-</p>
+<p>Por todo eso y por muchas cosas más que quizás ni siquiera sé explicar con palabras, quiero que sepas lo importante que eres para mí. Siempre ha bastado con que seas tú para enamorarme una y otra vez.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Mi bebé, mi negrita preciosa, mi princesita… algún día serás mi reina cuando nos casemos. Mi amor lindo, mi chiquita, mi bebita, mi todo, mi corazón, mi único y gran amor, mi mujercita valiente, la niñita de mis ojos.
-</p>
+<p>Mi bebé, mi negrita preciosa, mi princesita… algún día serás mi reina cuando nos casemos. Mi amor lindo, mi chiquita, mi bebita, mi todo, mi corazón, mi único y gran amor, mi mujercita valiente, la niñita de mis ojos.</p>
 </div>
 </div>
 
 <div class="page">
 <div class="content">
-<p>
-Te amo con todo mi corazón.<br><br>
-Hoy quiero desearte un feliz Día de la Mujer. 💛
-</p>
+<p>Te amo con todo mi corazón.<br><br>Hoy quiero desearte un feliz Día de la Mujer. 💛</p>
 </div>
 </div>
-
-<!-- PAGINA FINAL CON BRILLOS -->
 
 <div class="page">
 
@@ -114,3 +281,156 @@ Hoy quiero desearte un feliz Día de la Mujer. 💛
 </div>
 
 </div>
+
+<div class="controls">
+
+<div class="btn" id="prevBtn">❮</div>
+<div class="btn" id="nextBtn">❯</div>
+
+</div>
+
+</div>
+
+<audio id="music" loop playsinline webkit-playsinline>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const intro=document.getElementById("intro")
+const book=document.getElementById("book")
+const pages=document.querySelectorAll(".page")
+
+const nextBtn=document.getElementById("nextBtn")
+const prevBtn=document.getElementById("prevBtn")
+const backCover=document.getElementById("backCover")
+const openBtn=document.getElementById("openBtn")
+
+let current=0
+
+function updatePages(){
+
+pages.forEach((p,i)=>{
+
+p.classList.remove("active","prev")
+
+if(i===current){
+p.classList.add("active")
+}
+
+if(i<current){
+p.classList.add("prev")
+}
+
+})
+
+}
+
+/* ABRIR LIBRO */
+
+openBtn.addEventListener("click",()=>{
+
+intro.style.display="none"
+book.style.display="flex"
+
+current=0
+updatePages()
+
+})
+
+/* VOLVER PORTADA */
+
+backCover.addEventListener("click",()=>{
+
+book.style.display="none"
+intro.style.display="flex"
+
+current=0
+
+pages.forEach((p,i)=>{
+
+p.classList.remove("active","prev")
+
+if(i===0){
+p.classList.add("active")
+}
+
+})
+
+})
+
+/* SIGUIENTE */
+
+nextBtn.addEventListener("click",()=>{
+
+if(current < pages.length-1){
+
+current++
+updatePages()
+
+}
+
+})
+
+/* ANTERIOR */
+
+prevBtn.addEventListener("click",()=>{
+
+if(current>0){
+
+current--
+updatePages()
+
+}
+
+})
+
+/* SWIPE MOVIL */
+
+let startX=0
+
+document.addEventListener("touchstart",e=>{
+startX=e.touches[0].clientX
+})
+
+document.addEventListener("touchend",e=>{
+
+let endX=e.changedTouches[0].clientX
+
+if(startX-endX>50) nextBtn.click()
+if(endX-startX>50) prevBtn.click()
+
+})
+
+/* MUSICA */
+
+const music=document.getElementById("music")
+const musicBtn=document.getElementById("musicBtn")
+
+let playing=false
+
+musicBtn.addEventListener("click",()=>{
+
+if(!playing){
+
+music.play().then(()=>{
+
+playing=true
+musicBtn.innerHTML="🔊"
+
+})
+
+}else{
+
+music.pause()
+playing=false
+musicBtn.innerHTML="🔇"
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
