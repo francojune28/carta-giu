@@ -64,16 +64,18 @@ display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:flex-start;
-padding-top:90px;
-padding-left:20px;
-padding-right:20px;
-box-sizing:border-box;
+
+padding-top:70px; /* TEXTO MÁS ARRIBA */
 
 background:url("fondo.jpg") center/cover no-repeat;
 
 transform-origin:left;
 transform:rotateY(90deg);
 transition:transform .7s ease;
+
+padding-left:20px;
+padding-right:20px;
+box-sizing:border-box;
 }
 
 .page.active{
@@ -84,20 +86,22 @@ z-index:5;
 /* TEXTO */
 
 .text{
-max-width:500px;
+max-width:520px;
 font-size:20px;
 line-height:1.6;
 text-align:center;
 }
 
-/* BOTONES */
+/* CONTROLES (FLECHAS) */
 
 .controls{
-margin-top:30px;
+margin-top:18px; /* justo debajo del texto */
 display:flex;
 gap:40px;
 justify-content:center;
 }
+
+/* BOTONES */
 
 button{
 padding:12px 18px;
@@ -168,8 +172,6 @@ opacity:.7;
 
 <div class="cover" id="cover">
 
-<h1></h1>
-
 <button onclick="startBook()">Abrir carta</button>
 
 </div>
@@ -181,18 +183,13 @@ opacity:.7;
 <div class="sparkles"></div>
 
 <div class="text">
-
 Desde que llegaste a mi vida,<br>
 todo comenzó a sentirse diferente.
-
 </div>
 
 <div class="controls">
-
 <button onclick="goCover()">⬅</button>
-
 <button onclick="nextPage()">➡</button>
-
 </div>
 
 </div>
@@ -204,18 +201,13 @@ todo comenzó a sentirse diferente.
 <div class="sparkles"></div>
 
 <div class="text">
-
 Hay personas que aparecen por casualidad,<br>
 pero hay otras que llegan para cambiarlo todo.
-
 </div>
 
 <div class="controls">
-
 <button onclick="prevPage()">⬅</button>
-
 <button onclick="nextPage()">➡</button>
-
 </div>
 
 </div>
@@ -227,18 +219,13 @@ pero hay otras que llegan para cambiarlo todo.
 <div class="sparkles"></div>
 
 <div class="text">
-
 Contigo aprendí que los momentos simples<br>
 pueden convertirse en los más especiales.
-
 </div>
 
 <div class="controls">
-
 <button onclick="prevPage()">⬅</button>
-
 <button onclick="nextPage()">➡</button>
-
 </div>
 
 </div>
@@ -250,18 +237,13 @@ pueden convertirse en los más especiales.
 <div class="sparkles"></div>
 
 <div class="text">
-
 No sé qué traerá el futuro,<br>
 pero sé que me encanta vivir el presente contigo.
-
 </div>
 
 <div class="controls">
-
 <button onclick="prevPage()">⬅</button>
-
 <button onclick="nextPage()">➡</button>
-
 </div>
 
 </div>
@@ -273,18 +255,13 @@ pero sé que me encanta vivir el presente contigo.
 <div class="sparkles"></div>
 
 <div class="text">
-
 Gracias por cada sonrisa,<br>
 por cada momento y por cada recuerdo.
-
 </div>
 
 <div class="controls">
-
 <button onclick="prevPage()">⬅</button>
-
 <button onclick="nextPage()">➡</button>
-
 </div>
 
 </div>
@@ -296,20 +273,14 @@ por cada momento y por cada recuerdo.
 <div class="sparkles"></div>
 
 <div class="text">
-
 Esta carta no es el final,<br>
 solo el comienzo de muchas páginas más juntos.
-
 ✨
-
 </div>
 
 <div class="controls">
-
 <button onclick="prevPage()">⬅</button>
-
 <button onclick="goCover()">🏠</button>
-
 </div>
 
 </div>
